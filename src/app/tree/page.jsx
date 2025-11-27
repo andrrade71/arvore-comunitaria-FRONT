@@ -80,114 +80,116 @@ export default function ArvoreComFolhas() {
   }, []);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width: imgSize.w || 1, height: imgSize.h || 1 }}
-    >
-      {isLoggedIn ? (
-        <a
-          href="/dashboard"
-          className="fixed bottom-6 left-6 z-[1100] bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-5 rounded-full shadow-lg flex items-center gap-2 transition-colors duration-200"
-          style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-5 h-5"
+    <div className="min-h-screen bg-gradient-to-b from-sky-200 to-green-100 overflow-auto">
+      <div
+        className="relative mx-auto"
+        style={{ width: imgSize.w || 1, height: imgSize.h || 1 }}
+      >
+        {isLoggedIn ? (
+          <a
+            href="/dashboard"
+            className="fixed bottom-6 left-6 z-[1100] bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-5 rounded-full shadow-lg flex items-center gap-2 transition-colors duration-200"
+            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
-          Voltar para Dashboard
-        </a>
-      ) : (
-        <a
-          href="/login"
-          className="fixed bottom-6 left-6 z-[1100] bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full shadow-lg flex items-center gap-2 transition-colors duration-200"
-          style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
-          Fazer Login
-        </a>
-      )}
-      {/* Árvore */}
-      <img
-        src="/assets/tree.png"
-        alt="Árvore"
-        className="absolute top-0 left-0 w-full h-full pointer-events-none select-none"
-      />
-
-      {/* Folhas */}
-      {folhas.map((f, i) => (
-        <React.Fragment key={i}>
-          <img
-            src="/assets/leaf.png"
-            alt="Folha"
-            title={`Autor: ${f.autor}`}
-            className="absolute cursor-pointer select-none"
-            style={{ width: 60, height: 60, left: f.x - 8, top: f.y - 8 }}
-            onClick={() => setFolhaSelecionada(f)}
-          />
-          <span
-            className="absolute bg-white/80 px-2 py-0.5 rounded-lg text-xs font-bold pointer-events-none select-none text-black max-w-[120px] truncate"
-            style={{ left: f.x + 20, top: f.y + 10 }}
-            title={f.titulo}
-          >
-            {f.titulo}
-          </span>
-        </React.Fragment>
-      ))}
-
-      {/* Modal de descrição da folha */}
-      {folhaSelecionada && (
-        <div
-          className="fixed inset-0 bg-black/40 flex items-center justify-center z-[1000]"
-          onClick={() => setFolhaSelecionada(null)}
-        >
-          <div
-            className="bg-white rounded-xl px-6 py-8 min-w-[260px] max-w-md shadow-lg text-center relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="m-0 mb-3 text-xl font-bold text-green-800">
-              {folhaSelecionada.titulo}
-            </h2>
-            <p className="text-base m-0 text-black">
-              <span className="block text-sm text-gray-600 mb-2">Autor: {folhaSelecionada.autor}</span>
-              <span className="overflow-y-auto max-h-[50vh] block">
-                {folhaSelecionada.descricao}
-              </span>
-            </p>
-            <button
-              className="mt-6 px-4 py-1.5 rounded-md border-none bg-green-600 text-white font-bold text-base cursor-pointer"
-              onClick={() => setFolhaSelecionada(null)}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5"
             >
-              Fechar
-            </button>
-          </div>
-        </div>
-      )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+            Voltar para Dashboard
+          </a>
+        ) : (
+          <a
+            href="/login"
+            className="fixed bottom-6 left-6 z-[1100] bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full shadow-lg flex items-center gap-2 transition-colors duration-200"
+            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+            Fazer Login
+          </a>
+        )}
+        {/* Árvore */}
+        <img
+          src="/assets/tree.png"
+          alt="Árvore"
+          className="absolute top-0 left-0 w-full h-full pointer-events-none select-none"
+        />
 
-      {/* Canvas escondido apenas para leitura de pixels */}
-      <canvas ref={canvasRef} className="hidden" />
+        {/* Folhas */}
+        {folhas.map((f, i) => (
+          <React.Fragment key={i}>
+            <img
+              src="/assets/leaf.png"
+              alt="Folha"
+              title={`Autor: ${f.autor}`}
+              className="absolute cursor-pointer select-none"
+              style={{ width: 60, height: 60, left: f.x - 8, top: f.y - 8 }}
+              onClick={() => setFolhaSelecionada(f)}
+            />
+            <span
+              className="absolute bg-white/80 px-2 py-0.5 rounded-lg text-xs font-bold pointer-events-none select-none text-black max-w-[120px] truncate"
+              style={{ left: f.x + 20, top: f.y + 10 }}
+              title={f.titulo}
+            >
+              {f.titulo}
+            </span>
+          </React.Fragment>
+        ))}
+
+        {/* Modal de descrição da folha */}
+        {folhaSelecionada && (
+          <div
+            className="fixed inset-0 bg-black/40 flex items-center justify-center z-[1000]"
+            onClick={() => setFolhaSelecionada(null)}
+          >
+            <div
+              className="bg-white rounded-xl px-6 py-8 min-w-[260px] max-w-md shadow-lg text-center relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="m-0 mb-3 text-xl font-bold text-green-800">
+                {folhaSelecionada.titulo}
+              </h2>
+              <p className="text-base m-0 text-black">
+                <span className="block text-sm text-gray-600 mb-2">Autor: {folhaSelecionada.autor}</span>
+                <span className="overflow-y-auto max-h-[50vh] block">
+                  {folhaSelecionada.descricao}
+                </span>
+              </p>
+              <button
+                className="mt-6 px-4 py-1.5 rounded-md border-none bg-green-600 text-white font-bold text-base cursor-pointer"
+                onClick={() => setFolhaSelecionada(null)}
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Canvas escondido apenas para leitura de pixels */}
+        <canvas ref={canvasRef} className="hidden" />
+      </div>
     </div>
   );
 }
